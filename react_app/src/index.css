@@ -14,3 +14,60 @@ body {
     min-height:100%;
 
 }
+
+.App {
+    width: 70%;
+    background:#ecd1f0;
+    position: static;
+    height: 80vh;
+  
+    margin-left: auto;
+    margin-right: auto;
+    
+    position: relative;
+    top: 10vh;
+  }
+  
+  .time
+  {
+      position: relative;
+      display: inline-block;
+  
+      border-radius: 10px;
+      width: 86%;
+      height: 25%;
+      background: #ffffff;
+  
+      position: relative;
+      top: 6%;
+  
+      margin-bottom: 3%;
+      margin-left: 7%;
+      margin-right: 7%;
+  }
+  
+  .text_time {
+    font-size: large;
+    margin: 1%;
+  }
+
+  .med-list {
+    display: flex;
+    flex-direction: row; 
+    padding: 1rem;
+  }
+
+  .med {
+      background-color: rgb(253, 197, 249);
+      margin: 1%;
+      border-radius: 3px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 5%;
+      flex: 1 0 3%;
+      border: 1px solid black;
+      float:left;
+  }
+
