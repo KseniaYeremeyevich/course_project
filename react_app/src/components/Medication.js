@@ -1,11 +1,11 @@
 /*import { MdDeleteForever } from 'react-icons/md';*/
 
-const Medication = () => {
+const Medication = ({ id, text, date }) => {
     return (
         <div className='med'>
-            <span> First note! </span>
+            <span> {text} </span>
             <div>
-                <small>11.11.2021</small>
+                <small> {date} </small>
             </div>
         </div>
     );
@@ -13,4 +13,4 @@ const Medication = () => {
 
 export default Medication;
 
-//<MdDeleteForever className='delete-icon' size='1.3em' />
+//<MdDeleteForever className='delete-icon' size='1.3em' /> 
