@@ -22,10 +22,10 @@ const Main = () => {
     const newNote = {
       id: nanoid(),
       text: text,
-      date: "12/12/12" //date.toLocalDateString()
+      date: date.toLocaleDateString()
     };
     const newNotes = [...meds, newNote];
-    setMeds(newNote);
+    setMeds(newNotes);
   };
 
   return (

@@ -17,4 +17,3 @@ const MedicationsList = ({ meds, handleAddNote }) => {
 };
 
 export default MedicationsList;
- 
