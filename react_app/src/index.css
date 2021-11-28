@@ -6,7 +6,7 @@ html
 }
 
 body {
-    background-color: #fefafa;/*#ffffff;*/
+    background-color: #fefafa;
     font-size: 12px;
     width: 100vw;
     height: 100vh;
@@ -15,9 +15,21 @@ body {
 
 }
 
-.App {
-    width: 70vw; /*70%*/
-    background:#f6d2d6; /*#ecd1f0;*/
+.app {
+  width: 70vw; 
+    background:fefafa;
+    position: static;
+    height: 100vh;
+  
+    margin-left: auto;
+    margin-right: auto;
+    
+    position: relative;
+}
+
+.app_main {
+    width: 70vw;
+    background:#f6d2d6;
     position: static;
     height: 80vh;
   
@@ -25,112 +37,78 @@ body {
     margin-right: auto;
     
     position: relative;
-    top: 10vh;
+    top: 3vh;
   }
   
-  .time
-  {
-     
-  /*
-      display: flex/inline-flex;
-      flex-direction: column;
+.time {
+    display: inline-block;
+    border-radius: 10px;
+    width: 20vw;
+    height: 90%;
+    background: #fefafa;
 
-      border-radius: 10px;
-      width: 86%;
-      height: 25%;
-      background: #ffffff;
-  
-      position: relative;
-      top: 6%;
-  
-      margin-bottom: 3%;
-      margin-left: 7%;
-      margin-right: 7%;
-      */
-      display: inline-block;
-      border-radius: 10px;
-      width: 20vw;
-      height: 90%;
-      background: #fefafa;/*#ffffff;*/
-
-      position: relative;
-      top: 6%;
-      vertical-align: middle;
+    position: relative;
+    top: 3%;
+    vertical-align: middle;
       
-      margin-left: 2.3%;
-      margin-right: 2.3%;
-      box-shadow: inset 0 0 0 1px #6a4162; /*rgb(130, 2, 250);*/
-
-      
-
-/*
-      margin-bottom: 3%;
-      margin-left: 7%;
-      margin-right: 7%;
-      */
+    margin-left: 2.3%;
+    margin-right: 2.3%;
+    box-shadow: inset 0 0 0 1px #6a4162; 
   }
   
-  .text_time {
+.text_time {
     font-size: larger;
     margin: 1%;
     padding: 0.3vh;
     text-align: center;
     font: italic small-caps bold 20px/2 cursive;
-    color: #6a4162; /*rgb(130, 2, 250);*/
+    color: #6a4162; 
   }
 
-  .container {
+.container {
     max-width: 960px;
 
     display: flex;
     justify-content: center;
-    /*
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 50px;
-    padding-right: 15px;
-    */
+    overflow: auto;
   }
 
-  .med_list {
+.med_list {
     
     display: inline-block;
     flex-direction: column; 
-    
-    /*
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-
-    padding: 1rem;
-    */
   }
 
-  .med {
-      background-color: #f39db6; /*rgb(253, 197, 249);*/
-      margin: auto;
-      margin-bottom: 10%;
+.med {
+    background-color: #f39db6;
+    margin: auto;
+    margin-bottom: 10%;
       
-      border-radius: 5px;
-      padding: 1.5rem;
-      justify-content: space-between;
-      width: 12vw;
-      border: 1px solid #fefafa; /*rgb(130, 2, 250);*/
+    border-radius: 5px;
+    padding: 1.5rem;
+    justify-content: space-between;
+    width: 12vw;
+    border: 1px solid #fefafa;
 
-      font: italic small-caps bold 14px/2 cursive;
-      color:#d46a92;
-      
+    font: italic small-caps bold 14px/2 cursive;
+    color:#d46a92;
 
-      /*
-      display: flex;
-      flex-direction: column
-      float:left;
-      flex: 1 0 0%;
-      */
+    white-space: pre-wrap;
   }
+
+.note_footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+.footer_text {
+  font: italic small-caps bold 10px/2 cursive;
+  color:#fefafa;
+}
 
 .med.new {
-  background-color: #d46a92; /*rgb(213, 110, 245);*/
+  background-color: #d46a92;
 }
 
 textarea {
@@ -156,4 +134,35 @@ textarea:focus {
 .save_button:hover {
   background-color: #fefafa;
   cursor: pointer;
+}
+
+.delete_icon {
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color:  #f39db6;
+  border-radius: 10px;
+  padding: 7px;
+
+  width: 70vw;
+}
+
+.search input {
+  border: none;
+  background-color:  #f39db6;
+  width: 100%;
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: medium;
 }
