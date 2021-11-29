@@ -21,6 +21,10 @@ const Main = () => {
 
   const [searchText, setSearchText] = useState('');
 
+ /*
+  const [editItem, setEditItem] = useState(null)
+  */
+
   useEffect(() => {
     const savedNotes = JSON.parse(
       localStorage.getItem('react-meds-app-data')
@@ -55,47 +59,61 @@ const Main = () => {
     setMeds(newNotes);
   }
 
+/*  
+  const findItem = (id) => {
+    const item = meds.find(med => med.id === id)
+    setEditItem(item)
+  }
+
+  const editTask = (title, id) => {
+    const newNotes = meds.filter((med) => (med.id === id ? { id } : med))
+
+    setMeds(newNotes)
+    setEditItem(null)
+  }
+ */
+
+
   return (
   
   <div className='app'>
     <Header />
 
-<SearchNote handleSearchNote={setSearchText} />
-      <div className='app_main'>
+    <SearchNote handleSearchNote={setSearchText} />
+    <div className='app_main'>
+      
+      <div className='time'>
+        <p className='text_time'> 
+            Morning
+        </p>
+        <div className='time_container'>
 
+          <div className='container'>
+            <MedicationsList 
+              meds={meds.filter((med) => 
+                med.text.toLowerCase().includes(searchText)
+              )} 
+              handleAddNote={addNote} 
+              handleDeleteNote={deleteNote}
+              /*handleEditNote={findItem}*/
+            />
+          </div>
+        </div>
+      </div>
 
+      <div className='time'>
+        <p className='text_time'> 
+          Day
+        </p>  
+      </div>
 
-<div className='time'>
-  <p className='text_time'> 
-    Morning
-  </p>
+      <div className='time'>
+        <p className='text_time'> 
+          Evening
+        </p>
+      </div>
 
-  <div className='container'>
-    <MedicationsList 
-      meds={meds.filter((med) => 
-        med.text.toLowerCase().includes(searchText)
-      )} 
-      handleAddNote={addNote} 
-      handleDeleteNote={deleteNote}
-    />
-  </div>
-    
-</div>
-
-  <div className='time'>
-    <p className='text_time'> 
-      Day
-    </p>  
-
-  </div>
-
-  <div className='time'>
-    <p className='text_time'> 
-      Evening
-    </p>
-
-  </div>
-</div>
+    </div>
   </div>
   
   );
