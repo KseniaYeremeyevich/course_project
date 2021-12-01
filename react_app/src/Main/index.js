@@ -4,26 +4,27 @@ import { nanoid } from 'nanoid';
 import MedicationsList from '../components/MedicationsList';
 import SearchNote from '../components/SearchNote';
 import Header from '../components/Header';
+import AddNote from "../components/AddNote";
 
 const Main = () => {
   const [meds, setMeds] = useState([
     {
       id: nanoid(),
       text: "first hello",
-      date: "16/11/2021"
+      hour: "15",
+      minute: "30",
+      isDone: false
     },
     {
       id: nanoid(),
       text: "hello",
-      date: "16/11/2021"
+      hour: "15",
+      minute: "30",
+      isDone: false
     }
   ]);
 
   const [searchText, setSearchText] = useState('');
-
- /*
-  const [editItem, setEditItem] = useState(null)
-  */
 
   useEffect(() => {
     const savedNotes = JSON.parse(
@@ -43,12 +44,14 @@ const Main = () => {
     );
   }, [meds]);
 
-  const addNote = (text) => {
+  const addNote = (text, hour, minute) => {
     const date = new Date();
     const newNote = {
       id: nanoid(),
       text: text,
-      date: date.toLocaleDateString()
+      hour: hour,
+      minute: minute,
+      isDone: false
     };
     const newNotes = [...meds, newNote];
     setMeds(newNotes);
@@ -59,20 +62,28 @@ const Main = () => {
     setMeds(newNotes);
   }
 
-/*  
-  const findItem = (id) => {
-    const item = meds.find(med => med.id === id)
-    setEditItem(item)
-  }
+  const markTodo = (id) => {
+    const note = meds.filter((med)=> med.id === id);
+    note.isDone = !(note.isDone);//true;
+    console.log(note);
+    /*
+    const newNotes = meds.map(
+      (med)=> (med.id === id ? note : med));
+    console.log(newNotes);
+    setMeds(newNotes);
+*/
+    
 
-  const editTask = (title, id) => {
-    const newNotes = meds.filter((med) => (med.id === id ? { id } : med))
-
-    setMeds(newNotes)
-    setEditItem(null)
-  }
- */
-
+    /*
+    const newNotes = [...meds];
+    newNotes[id].isDone = true;
+    */
+   /*
+    const newNotes = meds.filter((med)=> (med.id === id ? med.isDone=true : med.isDone));
+    console.log(newNotes);
+    setMeds(newNotes);
+    */
+  };
 
   return (
   
@@ -88,14 +99,35 @@ const Main = () => {
         </p>
         <div className='time_container'>
 
+        <AddNote handleAddNote={addNote} />
+
           <div className='container'>
             <MedicationsList 
               meds={meds.filter((med) => 
-                med.text.toLowerCase().includes(searchText)
+                med.text.toLowerCase().includes(searchText) & (med.text.length > 5)
+              )} 
+              handleDeleteNote={deleteNote}
+              markTodo={markTodo}
+            />
+          </div>
+        </div>
+      </div>
+
+
+      <div className='time'>
+        <p className='text_time'> 
+            Day
+        </p>
+        <div className='time_container'>
+
+          <div className='container'>
+            <MedicationsList 
+              meds={meds.filter((med) => 
+                med.text.toLowerCase().includes(searchText) & (med.text.length === 5)
               )} 
               handleAddNote={addNote} 
               handleDeleteNote={deleteNote}
-              /*handleEditNote={findItem}*/
+              markTodo={markTodo}
             />
           </div>
         </div>
@@ -103,14 +135,21 @@ const Main = () => {
 
       <div className='time'>
         <p className='text_time'> 
-          Day
-        </p>  
-      </div>
-
-      <div className='time'>
-        <p className='text_time'> 
-          Evening
+            Evening
         </p>
+        <div className='time_container'>
+
+          <div className='container'>
+            <MedicationsList 
+              meds={meds.filter((med) => 
+                med.text.toLowerCase().includes(searchText) & (med.text.length < 5)
+              )} 
+              handleAddNote={addNote} 
+              handleDeleteNote={deleteNote}
+              markTodo={markTodo}
+            />
+          </div>
+        </div>
       </div>
 
     </div>
@@ -121,3 +160,7 @@ const Main = () => {
 
 export default Main;
 
+/*
+ <Header meds={meds} setMeds={setMeds}/>
+
+*/

@@ -1,7 +1,8 @@
-import Main from "./Main";
+import React from "react";
+import Setup from './Setup'
 
 const App = () => {
-  return <Main />;
+  return <Setup />;
 };
 
 export default App;

@@ -1,17 +1,18 @@
 import Medication from "./Medication";
-import AddNote from "./AddNote";
 
-const MedicationsList = ({ meds, handleAddNote, handleDeleteNote /*, handleEditNote*/ }) => {
+const MedicationsList = ({ meds, handleDeleteNote, markTodo }) => {
     return (
         <div className='med_list'>
-            <AddNote handleAddNote={handleAddNote/*, handleEditNote*/} />
+            
             {meds.map((med) => (
 				<Medication
 					id={med.id} 
 					text={med.text} 
-					date={med.date}
+                    hour={med.hour}
+                    minute={med.minute}
+                    isDone={med.isDone}
                     handleDeleteNote={handleDeleteNote}
-                    /*handleEditNote={handleEditNote}*/
+                    markTodo={markTodo}
 				/>
             ))}
         </div> 
