@@ -9,18 +9,20 @@ const AddNote = ({ handleAddNote }) => {
     const timeLimit = 2;
 
     const handleChange = (event) => {
+        console.log(event.target.value);
         if (characterLimit - event.target.value.length >= 0) {
             setNoteText(event.target.value);
         }           
     };
 
-    const handleChangeHour = (event) => {
-        if ((timeLimit - event.target.value.length >= 0) ) {
+    const handleChangeHour = (event) => {      
+        if ((timeLimit - event.target.value.length >= 0)) {
             setNoteHour(event.target.value);
         }           
     };
 
     const handleChangeMinute = (event) => {
+        console.log(event.target.value);
         if ((timeLimit - event.target.value.length >= 0)) {
             setNoteMinute(event.target.value);
         }           
@@ -47,21 +49,25 @@ const AddNote = ({ handleAddNote }) => {
                 onChange={handleChange}
             ></textarea>
             <div className='add_time'> 
-                <textarea className='add_time_area' 
-                    rows='1'
-                    cols='2'
+                <input 
+                    type="number" 
+                    className='add_time_area'   
+                    min="0" 
+                    max="23" 
                     placeholder='00'
                     value={noteHour}
                     onChange={handleChangeHour}
-                ></textarea>
-                <span className='time_split'>:</span>
-                <textarea className='add_time_area' 
-                    rows='1'
-                    cols='2'
+                />
+                
+                <input 
+                    type="number" 
+                    className='add_time_area'   
+                    min="0" 
+                    max="60" 
                     placeholder='00'
                     value={noteMinute}
                     onChange={handleChangeMinute}
-                ></textarea>
+                />
             </div>
             
             <div className='note_footer'>
@@ -75,3 +81,5 @@ const AddNote = ({ handleAddNote }) => {
 };
 
 export default AddNote;
+
+

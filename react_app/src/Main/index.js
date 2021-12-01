@@ -104,7 +104,7 @@ const Main = () => {
           <div className='container'>
             <MedicationsList 
               meds={meds.filter((med) => 
-                med.text.toLowerCase().includes(searchText) & (med.text.length > 5)
+                med.text.toLowerCase().includes(searchText) & (med.hour >= 4) & (med.hour <= 11)
               )} 
               handleDeleteNote={deleteNote}
               markTodo={markTodo}
@@ -123,7 +123,7 @@ const Main = () => {
           <div className='container'>
             <MedicationsList 
               meds={meds.filter((med) => 
-                med.text.toLowerCase().includes(searchText) & (med.text.length === 5)
+                med.text.toLowerCase().includes(searchText) & (med.hour >= 12) & (med.hour <= 16)
               )} 
               handleAddNote={addNote} 
               handleDeleteNote={deleteNote}
@@ -142,7 +142,7 @@ const Main = () => {
           <div className='container'>
             <MedicationsList 
               meds={meds.filter((med) => 
-                med.text.toLowerCase().includes(searchText) & (med.text.length < 5)
+                med.text.toLowerCase().includes(searchText) & ((med.hour >= 17) | (med.hour <= 3))
               )} 
               handleAddNote={addNote} 
               handleDeleteNote={deleteNote}

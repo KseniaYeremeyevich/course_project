@@ -187,9 +187,12 @@ body {
 .add_time {
   display: inline-block;
   flex-direction: row;
-  width: 7wv;
+  /*width: 7wv; 7wv;
+  width: 100px;
   height: 10%;
+  */
   justify-content: space-around;
+  overflow: hidden;
 }
 
 .time_split {
@@ -205,10 +208,10 @@ body {
   font: italic small-caps bold 12px cursive;
   color:#2b4a4a;/*#6a4162;*/
   height: 3vh;
-  width: 18%;
+  width: 25%;
   vertical-align: middle;
   padding-left: 1vh;
-  
+  box-shadow: inset 0 0 0 1px #2b4a4a;
 }
 
 .add_time_area:focus {
