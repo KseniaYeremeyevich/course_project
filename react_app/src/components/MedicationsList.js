@@ -6,6 +6,7 @@ const MedicationsList = ({ meds, handleDeleteNote, markTodo }) => {
             
             {meds.map((med) => (
 				<Medication
+                    key={med.id}
 					id={med.id} 
 					text={med.text} 
                     hour={med.hour}

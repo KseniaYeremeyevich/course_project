@@ -45,7 +45,6 @@ const Main = () => {
   }, [meds]);
 
   const addNote = (text, hour, minute) => {
-    const date = new Date();
     const newNote = {
       id: nanoid(),
       text: text,
@@ -63,26 +62,24 @@ const Main = () => {
   }
 
   const markTodo = (id) => {
-    const note = meds.filter((med)=> med.id === id);
-    note.isDone = !(note.isDone);//true;
-    console.log(note);
-    /*
     const newNotes = meds.map(
-      (med)=> (med.id === id ? note : med));
-    console.log(newNotes);
+      (med)=> (med.id === id ? 
+        {
+          id: med.id,
+          text: med.text,
+          hour: med.hour,
+          minute: med.minute,
+          isDone: !med.isDone
+        } : {
+          id: med.id,
+          text: med.text,
+          hour: med.hour,
+          minute: med.minute,
+          isDone: med.isDone
+        } 
+      ));
+    //console.log(newNotes);
     setMeds(newNotes);
-*/
-    
-
-    /*
-    const newNotes = [...meds];
-    newNotes[id].isDone = true;
-    */
-   /*
-    const newNotes = meds.filter((med)=> (med.id === id ? med.isDone=true : med.isDone));
-    console.log(newNotes);
-    setMeds(newNotes);
-    */
   };
 
   return (
@@ -159,8 +156,3 @@ const Main = () => {
 };
 
 export default Main;
-
-/*
- <Header meds={meds} setMeds={setMeds}/>
-
-*/
