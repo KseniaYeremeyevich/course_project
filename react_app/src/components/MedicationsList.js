@@ -1,18 +1,15 @@
 import Medication from "./Medication";
 
-const MedicationsList = ({ meds, handleDeleteNote, markTodo }) => {
+const MedicationsList = ({ meds, handleDeleteNote, handleEditClick, markTodo }) => {
     return (
         <div className='med_list'>
             
             {meds.map((med) => (
 				<Medication
                     key={med.id}
-					id={med.id} 
-					text={med.text} 
-                    hour={med.hour}
-                    minute={med.minute}
-                    isDone={med.isDone}
+					med={med}
                     handleDeleteNote={handleDeleteNote}
+                    handleEditClick={handleEditClick}
                     markTodo={markTodo}
 				/>
             ))}

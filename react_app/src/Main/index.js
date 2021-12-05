@@ -5,6 +5,7 @@ import MedicationsList from '../components/MedicationsList';
 import SearchNote from '../components/SearchNote';
 import Header from '../components/Header';
 import AddNote from "../components/AddNote";
+import EditNote from "../components/EditNote";
 
 const Main = () => {
   const [meds, setMeds] = useState([
@@ -25,6 +26,9 @@ const Main = () => {
   ]);
 
   const [searchText, setSearchText] = useState('');
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentNote, setCurrentNote] = useState({})
 
   useEffect(() => {
     const savedNotes = JSON.parse(
@@ -59,7 +63,7 @@ const Main = () => {
   const deleteNote = (id) => {
     const newNotes = meds.filter((med)=> med.id !== id);
     setMeds(newNotes);
-  }
+  };
 
   const markTodo = (id) => {
     const newNotes = meds.map(
@@ -82,6 +86,30 @@ const Main = () => {
     setMeds(newNotes);
   };
 
+  const handleEditInputChange = (e) => {
+    setCurrentNote({ ...currentNote, text: e.target.value });
+    console.log(currentNote);
+  };
+
+  const handleEditFormSubmit = (e) => {
+    e.preventDefault();
+
+    handleUpdateTodo(currentNote.id, currentNote);
+  };
+
+  const handleUpdateTodo = (id, updatedMed) => {
+    const updatedItem = meds.map((med) => {
+      return med.id === id ? updatedMed : med;
+    });
+    setIsEditing(false);
+    setMeds(updatedItem);
+  };
+
+  const handleEditClick = (med) => {
+    setIsEditing(true);
+    setCurrentNote({ ...med });
+  }
+
   return (
   
   <div className='app'>
@@ -96,7 +124,16 @@ const Main = () => {
         </p>
         <div className='time_container'>
 
-        <AddNote handleAddNote={addNote} />
+        {isEditing ? 
+          <EditNote 
+            currentNote={currentNote}
+            setIsEditing={setIsEditing}
+            onEditInputChange={handleEditInputChange}
+            onEditFormSubmit={handleEditFormSubmit}
+          /> 
+          : 
+          <AddNote handleAddNote={addNote} />}
+        
 
           <div className='container'>
             <MedicationsList 
@@ -104,6 +141,7 @@ const Main = () => {
                 med.text.toLowerCase().includes(searchText) & (med.hour >= 4) & (med.hour <= 11)
               )} 
               handleDeleteNote={deleteNote}
+              handleEditClick={handleEditClick}
               markTodo={markTodo}
             />
           </div>
@@ -124,6 +162,7 @@ const Main = () => {
               )} 
               handleAddNote={addNote} 
               handleDeleteNote={deleteNote}
+              handleEditClick={handleEditClick}
               markTodo={markTodo}
             />
           </div>
@@ -143,6 +182,7 @@ const Main = () => {
               )} 
               handleAddNote={addNote} 
               handleDeleteNote={deleteNote}
+              handleEditClick={handleEditClick}
               markTodo={markTodo}
             />
           </div>
